@@ -12,6 +12,11 @@ export function PhotoGrid({ states, onPick, onClear }: Props) {
 
   const filledCount = PHOTO_SLOTS.filter((s) => states[s.token]?.status === "ready").length;
 
+  const pairs: Array<[typeof pairSlots[number], typeof pairSlots[number]]> = [];
+  for (let i = 0; i < pairSlots.length; i += 2) {
+    pairs.push([pairSlots[i], pairSlots[i + 1]]);
+  }
+
   return (
     <section className="rounded-xl border border-border bg-surface p-4 sm:p-6">
       <div className="mb-4 flex items-baseline justify-between">
@@ -21,7 +26,7 @@ export function PhotoGrid({ states, onPick, onClear }: Props) {
         </span>
       </div>
 
-      <div className="mb-6 max-w-xs">
+      <div className="mx-auto mb-6 max-w-xs">
         <PhotoSlotCard
           slot={shipSlot}
           state={states[shipSlot.token] ?? { status: "empty" }}
@@ -30,15 +35,22 @@ export function PhotoGrid({ states, onPick, onClear }: Props) {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-        {pairSlots.map((slot) => (
-          <PhotoSlotCard
-            key={slot.token}
-            slot={slot}
-            state={states[slot.token] ?? { status: "empty" }}
-            onPick={(file) => onPick(slot.token, file)}
-            onClear={() => onClear(slot.token)}
-          />
+      <div className="flex flex-col gap-3">
+        {pairs.map(([before, after]) => (
+          <div key={before.token} className="grid grid-cols-2 gap-3">
+            <PhotoSlotCard
+              slot={before}
+              state={states[before.token] ?? { status: "empty" }}
+              onPick={(file) => onPick(before.token, file)}
+              onClear={() => onClear(before.token)}
+            />
+            <PhotoSlotCard
+              slot={after}
+              state={states[after.token] ?? { status: "empty" }}
+              onPick={(file) => onPick(after.token, file)}
+              onClear={() => onClear(after.token)}
+            />
+          </div>
         ))}
       </div>
     </section>

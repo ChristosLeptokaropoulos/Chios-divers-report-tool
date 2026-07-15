@@ -123,7 +123,7 @@ export function ReportForm() {
   const uploading = Object.values(photoStates).some((s) => s.status === "uploading");
 
   return (
-    <div className="mx-auto flex max-w-4xl flex-col gap-6 p-4 pb-28 sm:p-6">
+    <div className="mx-auto flex max-w-4xl flex-col gap-6 p-4 pb-40 sm:p-6 sm:pb-40">
       <FieldGroupSection group={HEADER_GROUP} values={textValues} onChange={updateText} />
       <FieldGroupSection group={GENERAL_DETAILS_GROUP} values={textValues} onChange={updateText} />
       <FieldGroupSection group={ASSIGNMENT_GROUP} values={textValues} onChange={updateText} />
