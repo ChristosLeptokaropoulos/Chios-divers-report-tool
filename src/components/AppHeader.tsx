@@ -1,6 +1,11 @@
 import Image from "next/image";
+import { LogoutButton } from "@/components/LogoutButton";
 
-export function AppHeader() {
+interface Props {
+  showLogout?: boolean;
+}
+
+export function AppHeader({ showLogout = false }: Props) {
   return (
     <header className="bg-brand-navy text-white">
       <div className="mx-auto flex max-w-4xl items-center gap-3 px-4 py-3 sm:px-6">
@@ -18,6 +23,11 @@ export function AppHeader() {
           </p>
           <p className="text-xs text-white/70">Service Report Tool</p>
         </div>
+        {showLogout && (
+          <div className="ml-auto">
+            <LogoutButton />
+          </div>
+        )}
       </div>
     </header>
   );
