@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import sharp from "sharp";
-import { TemplateHandler, MimeType } from "easy-template-x";
+import { TemplateHandler, MimeType, type TemplateData } from "easy-template-x";
 import { del } from "@vercel/blob";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
   }
 
   const { textValues, partValues, photos } = body;
-  const data: Record<string, unknown> = buildTextTokenData(textValues ?? {}, partValues ?? {});
+  const data: TemplateData = buildTextTokenData(textValues ?? {}, partValues ?? {});
 
   const blobUrls = Object.values(photos ?? {});
 
