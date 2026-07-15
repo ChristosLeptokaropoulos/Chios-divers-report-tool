@@ -40,12 +40,12 @@ export function PhotoSlotCard({ slot, state, onPick, onClear }: Props) {
           </div>
         )}
       </div>
-      <div className="flex items-center justify-between gap-2 p-2">
-        <span className="truncate text-xs font-medium">{slot.label}</span>
-        <div className="flex shrink-0 gap-1">
+      <div className="p-2">
+        <p className="mb-1.5 truncate text-xs font-medium">{slot.label}</p>
+        <div className="flex gap-1.5">
           <label
             htmlFor={inputId}
-            className="cursor-pointer rounded-md border border-border px-2 py-1 text-xs hover:bg-black/5 dark:hover:bg-white/10"
+            className="flex-1 cursor-pointer rounded-md border border-border py-2 text-center text-sm font-medium active:bg-black/10 dark:active:bg-white/15"
           >
             {state.previewUrl ? "Replace" : "Add"}
           </label>
@@ -65,7 +65,7 @@ export function PhotoSlotCard({ slot, state, onPick, onClear }: Props) {
             <button
               type="button"
               onClick={onClear}
-              className="rounded-md border border-border px-2 py-1 text-xs hover:bg-black/5 dark:hover:bg-white/10"
+              className="rounded-md border border-border px-3 py-2 text-sm font-medium active:bg-black/10 dark:active:bg-white/15"
             >
               Clear
             </button>
